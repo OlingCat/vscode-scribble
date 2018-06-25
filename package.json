@@ -1,0 +1,26 @@
+{
+    "name": "scribble",
+    "displayName": "scribble",
+    "description": "",
+    "version": "0.0.1",
+    "publisher": "OlingCat",
+    "engines": {
+        "vscode": "^1.24.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "scribble",
+            "aliases": ["Scribble", "scribble"],
+            "extensions": [".scrbl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "scribble",
+            "scopeName": "source.scribble",
+            "path": "./syntaxes/scribble.tmLanguage.json"
+        }]
+    }
+}

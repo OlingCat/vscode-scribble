@@ -1,0 +1,81 @@
+{
+    "fileTypes": [
+		".scrbl"
+    ],
+	"name": "Scribble",
+    "patterns": [
+		{
+			"include": "#expression"
+		}
+	],
+
+	"repository": {
+		"comment": {
+			"patterns": [{
+				"name": "comment.line.scribble",
+				"match": "@\\;(?:[^\\{]).*$\\n?"
+			},
+			{
+				"name": "comment.block.scribble",
+				"match": "@\\;\\{.*\\}"
+			}
+		]
+		},
+		"strings": {
+			"name": "string.quoted.double.scribble",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.scribble",
+					"match": "\\\\."
+				},
+				{
+					"name": "constant.string.formated.scribble",
+					"match": "~."
+				}
+			]
+		},
+		"keyword": {
+			"name": "storage.type.class.scribble",
+			"match": "#(?:[^\\s\\(\\)\\[\\]\\{\\}\\.])+[?:\\s\\[\\]\\}]"
+		},
+		"s-expression-name": {
+			"match": "\\((?:\\s)*([^'\"\\:#\\/\\(\\)\\[\\]\\|0-9](?:[^\\)\\]\\(\\[\\|\\s])*)",
+			"captures": {
+				"1": {
+					"name": "entity.name.function.scribble"
+				}
+			}
+		},
+		"at-expression-name": {
+			"match": "@\\|?([^'\"\\:\\;#\\/\\(\\)\\[\\]\\{\\}0-9](?:[^\\)\\]\\}\\(\\[\\{\\|\\s])*)",
+			"captures": {
+				"1": {
+					"name": "entity.name.function.scribble"
+				}
+			}
+		},
+        "expression": {
+            "name": "expression.scribble",
+            "patterns": [
+				{
+					"include": "#keyword"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#comment"
+				},
+                {
+                    "include": "#s-expression-name"
+				},
+                {
+                    "include": "#at-expression-name"
+				}
+            ]
+		}
+	},
+	"scopeName": "source.scribble"
+}
